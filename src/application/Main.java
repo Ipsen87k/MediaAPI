@@ -1,7 +1,10 @@
 package application;
 	
 import application.FileDialog.FileReadWrite;
+import application.MediaClass.IMediator;
+import application.MediaClass.MediaPlay;
 import application.MediaClass.MediaPlayBase;
+import application.MediaClass.MovieTiem;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,12 +16,14 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			
 			BorderPane root = new BorderPane();
-			new MenuStrip(root,primaryStage);
+			var imediatir=new MovieTiem();
+			new MenuStrip(root,primaryStage,imediatir);
+			//root.setBottom(imediatir.GetRoot());
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -58,12 +63,12 @@ final class MenuStrip extends MenuBar{
     MenuItem copyItem = new MenuItem("コピー");
     MenuItem pasteItem = new MenuItem("貼り付け");
     
-    public MenuStrip(BorderPane root,Stage stage) {
+    public MenuStrip(BorderPane root,Stage stage,IMediator<Double, MediaPlayBase> iMediator) {
         fileMenu.getItems().addAll(newItem, openItem, saveItem);
         editMenu.getItems().addAll(playItem, copyItem, pasteItem);
         
         getMenus().addAll(fileMenu,editMenu);
-        mediaPlayBase=new MediaPlayBase(root,stage,this.getHeight());
+        mediaPlayBase=new MediaPlay(root,stage,this.getHeight(),iMediator);
         file=new FileReadWrite(stage);
         this.stage=stage;
         FileMenuItemEventInit();

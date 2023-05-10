@@ -1,17 +1,20 @@
 package application.MediaClass;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
-public class MediaPlayBase {
+public abstract class MediaPlayBase {
 	protected Media media;
     protected MediaPlayer mediaPlayer;
     protected MediaView meidaView;
-    BorderPane root;
-    Stage stage;
+    protected IMediator<Double ,MediaPlayBase> iMediator;
+    protected BorderPane root;
+    protected Stage stage;
     double height;
     public MediaPlayBase(BorderPane root,Stage stage ,double heitht) {
 	// TODO 自動生成されたコンストラクター・スタブ
@@ -19,27 +22,7 @@ public class MediaPlayBase {
     	this.stage=stage;
     	this.height=heitht;
     }
-    public void SetVideoPath(String videoPath ) {
-    	media=new Media(videoPath);
-    	mediaPlayer=new MediaPlayer(media);
-    	this.meidaView =new MediaView(mediaPlayer);
-    	EventInit();
-    	root.setCenter(this.meidaView);
-    }
-    public MediaPlayer GetMedipPlayer() {
-    	return this.mediaPlayer;
-    }
-    public Media GetMedia() {
-    	return this.media;
-    }
-    private void EventInit() {
-    	mediaPlayer.setOnReady(()->{
-    	    int videoWidth = mediaPlayer.getMedia().getWidth();
-    	    int videoHeight = mediaPlayer.getMedia().getHeight();
-
-    	    // フォーム（Stage）のサイズを動画ファイルのサイズに設定
-    	    stage.setWidth(videoWidth);
-    	    stage.setHeight(videoHeight+height);
-    	});
-    }
+    public abstract void SetVideoPath(String videoPath );
+    public abstract MediaPlayer GetMedipPlayer();
+    public abstract void CurrentTimeEvent(Slider slider,Label label);
 }
