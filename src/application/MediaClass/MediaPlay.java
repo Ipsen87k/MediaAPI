@@ -37,8 +37,8 @@ public class MediaPlay extends MediaPlayBase{
     	    
     	    this.iMediator.SendData(this.mediaPlayer.getTotalDuration().toSeconds(), this);
     	    // フォーム（Stage）のサイズを動画ファイルのサイズに設定
-    	    //stage.setWidth(videoWidth);
-    	   //stage.setHeight(videoHeight+height);
+    	    stage.setWidth(videoWidth);
+    	    stage.setHeight(videoHeight+height);
     	    root.setBottom(iMediator.GetRoot());
     	});
 		
@@ -57,14 +57,14 @@ public class MediaPlay extends MediaPlayBase{
 //			@Override
 //			public void invalidated(Observable arg0) {
 //				// TODO 自動生成されたメソッド・スタブ
-//				if(slider !=null) {
-//					slider.setValue(mediaPlayer.getCurrentTime().toSeconds());
-//				}
+//				slider.setValue(mediaPlayer.getCurrentTime().toSeconds());
 //			}
 //		});
+
 		mediaPlayer.currentTimeProperty().addListener((o,oldvaue,newValue)->{
-			//mediaPlayer.pause();
-			 slider.setValue(newValue.toSeconds());
+			 if(!slider.isValueChanging()) {
+				 slider.setValue(newValue.toSeconds());
+			 }
 		});
 	}
 
