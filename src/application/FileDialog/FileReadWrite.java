@@ -5,7 +5,7 @@ import java.io.File;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class FileReadWrite {
+public class FileReadWrite implements FileOpenable{
 	private FileChooser dialog=new FileChooser();
 	private Stage stage;
 	private String filePath;
