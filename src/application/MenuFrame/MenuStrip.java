@@ -4,6 +4,7 @@ import application.FileDialog.FileOpenable;
 import application.FileDialog.FileReadWrite;
 import application.MediaClass.IMediator;
 import application.MediaClass.MediaPlayBase;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.Stage;
@@ -11,8 +12,8 @@ import javafx.stage.Stage;
 public class MenuStrip extends MenuStripBase{
 	private FileOpenable fileOpenable;
 	
-	public MenuStrip(BorderPane root, Stage stage, IMediator<Double, MediaPlayBase> iMediator) {
-		super(root, stage, iMediator);
+	public MenuStrip(BorderPane root, Stage stage, IMediator<Double, MediaPlayBase> iMediator,Scene scene) {
+		super(root, stage, iMediator,scene);
 		fileOpenable=new FileReadWrite(stage);
 		FileMenuItemAddEvent(); 
 		EditMenuItemEventAddInit();

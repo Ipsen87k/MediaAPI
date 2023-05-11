@@ -15,14 +15,13 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = new BorderPane();
-			var imediatir=new MovieTiem();
-			new MenuStrip(root,primaryStage,imediatir);
-			//root.setBottom(imediatir.GetRoot());
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			
+			var imediatir=new MovieTiem();
+			new MenuStrip(root,primaryStage,imediatir,scene);
 			primaryStage.show();
-			//var fe=new FileReadWrite(primaryStage);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

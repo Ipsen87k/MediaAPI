@@ -1,18 +1,27 @@
 package application.MediaClass;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class MediaPlay extends MediaPlayBase{
 
-	public MediaPlay(BorderPane root, Stage stage, double heitht,IMediator<Double, MediaPlayBase> iMediator) {
+	private Scene scene;
+	private final Duration ONEFPSDuration=Duration.seconds(0.0333);
+	private ReadOnlyObjectProperty<Duration> currentTimeProperty;
+	public MediaPlay(BorderPane root, Stage stage, double heitht,IMediator<Double, MediaPlayBase> iMediator ,Scene scene) {
 		super(root, stage, heitht);
 		this.iMediator=iMediator;
+		this.scene=scene;
 	}
 
 	@Override
@@ -31,11 +40,32 @@ public class MediaPlay extends MediaPlayBase{
 
 
 	private void EventInit() {
+		scene.setOnKeyPressed(e->{
+			System.out.println(e.getCode());
+			if(e.getCode()==KeyCode.K) {
+                if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                    mediaPlayer.pause();
+                }
+                else if(mediaPlayer.getStatus()==Status.PAUSED)
+                	mediaPlayer.play();
+			}
+			if(e.getCode()==KeyCode.DOWN) {
+				if(mediaPlayer.getStatus()==Status.PAUSED) {
+					seekToPreviousFrame();
+				}
+			}
+			if(e.getCode()==KeyCode.UP) {
+				if(mediaPlayer.getStatus()==Status.PAUSED) {
+					seekToNextFrame();
+				}
+			}
+		});
     	mediaPlayer.setOnReady(()->{
     	    int videoWidth = mediaPlayer.getMedia().getWidth();
     	    int videoHeight = mediaPlayer.getMedia().getHeight();
     	    
     	    this.iMediator.SendData(this.mediaPlayer.getTotalDuration().toSeconds(), this);
+    	    currentTimeProperty=mediaPlayer.currentTimeProperty();
     	    // フォーム（Stage）のサイズを動画ファイルのサイズに設定
     	    stage.setWidth(videoWidth);
     	    stage.setHeight(videoHeight+height);
@@ -43,7 +73,17 @@ public class MediaPlay extends MediaPlayBase{
     	});
 		
 	}
+    private void seekToPreviousFrame() {
+        double currentTime = currentTimeProperty.get().toMillis();
+        double newTime = Math.max(currentTime - ONEFPSDuration.toMillis(), 0);
+        mediaPlayer.seek(Duration.millis(newTime));
+    }
 
+    private void seekToNextFrame() {
+        double currentTime = currentTimeProperty.get().toMillis();
+        double newTime = Math.min(currentTime + ONEFPSDuration.toMillis(), mediaPlayer.getTotalDuration().toMillis());
+        mediaPlayer.seek(Duration.millis(newTime));
+    }
 	@Override
 	public MediaPlayer GetMedipPlayer() {
 		// TODO 自動生成されたメソッド・スタブ
