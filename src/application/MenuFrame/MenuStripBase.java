@@ -24,7 +24,7 @@ abstract class MenuStripBase extends MenuBar{
     protected final MenuItem PAUSEITEM = new MenuItem("一時停止");
     protected final MenuItem STOPITEM = new MenuItem("停止");
     
-    public MenuStripBase(BorderPane root,Stage stage,IMediator<Double, MediaPlayBase> iMediator,Scene scene) {
+    public MenuStripBase(BorderPane root,Stage stage,IMediator<MediaPlayBase> iMediator,Scene scene) {
         fileMenu.getItems().addAll(newItem, openItem, saveItem);
         editMenu.getItems().addAll(playItem, PAUSEITEM, STOPITEM);     
         getMenus().addAll(fileMenu,editMenu);

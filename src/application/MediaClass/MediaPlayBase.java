@@ -1,5 +1,7 @@
 package application.MediaClass;
 
+import VolumeFrame.Observer;
+import VolumeFrame.VolumeSliderBase;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
@@ -8,11 +10,11 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
-public abstract class MediaPlayBase {
+public abstract class MediaPlayBase implements Observer<VolumeSliderBase>{
 	protected Media media;
     protected MediaPlayer mediaPlayer;
     protected MediaView meidaView;
-    protected IMediator<Double ,MediaPlayBase> iMediator;
+    protected IMediator<MediaPlayBase> iMediator;
     protected BorderPane root;
     protected Stage stage;
     double height;

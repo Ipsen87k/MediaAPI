@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class MenuStrip extends MenuStripBase{
 	private FileOpenable fileOpenable;
 	
-	public MenuStrip(BorderPane root, Stage stage, IMediator<Double, MediaPlayBase> iMediator,Scene scene) {
+	public MenuStrip(BorderPane root, Stage stage, IMediator<MediaPlayBase> iMediator,Scene scene) {
 		super(root, stage, iMediator,scene);
 		fileOpenable=new FileReadWrite(stage);
 		FileMenuItemAddEvent(); 

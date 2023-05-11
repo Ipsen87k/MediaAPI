@@ -5,7 +5,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-public class MovieTiem extends Slider implements IMediator<Double,MediaPlayBase>{
+public class MovieTiem extends Slider implements IMediator<MediaPlayBase>{
 	
 	private MediaPlayBase mediaPlayBase;
 	private Label timeLabel=new Label();
@@ -19,11 +19,7 @@ public class MovieTiem extends Slider implements IMediator<Double,MediaPlayBase>
 		
 
 	}
-
-	public  void SendData(Double data) {
-		SendData(data,null);
-	}
-	public void SendData(Double data,MediaPlayBase media) {
+	public void SendData(MediaPlayBase media) {
 		setMin(media.GetMedipPlayer().getStartTime().toSeconds());
 		setMax(media.GetMedipPlayer().getStopTime().toSeconds());
 		mediaPlayBase=media;
