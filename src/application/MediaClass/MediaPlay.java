@@ -80,7 +80,9 @@ public class MediaPlay extends MediaPlayBase{
 		
 	}
     private void seekToPreviousFrame() {
+    	System.out.println(currentTimeProperty.get().toMillis());
         double newTime = currentTimeProperty.get().toMillis() - ONEFPSDuration.toMillis();
+        System.out.println(newTime);
         mediaPlayer.seek(Duration.millis(newTime));
     }
 

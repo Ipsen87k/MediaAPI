@@ -41,7 +41,7 @@ public class MenuStrip extends MenuStripBase{
     		
     	});
     	STOPITEM.setOnAction(e->{
-    		if(mediaPlayBase.GetMedipPlayer().getStatus()==Status.PLAYING) {
+    		if(mediaPlayBase.GetMedipPlayer().getStatus()==Status.PLAYING||mediaPlayBase.GetMedipPlayer().getStatus()==Status.PAUSED) {
     			mediaPlayBase.GetMedipPlayer().stop();
     		}
     		
