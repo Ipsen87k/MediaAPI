@@ -34,25 +34,11 @@ public class MovieTiem extends Slider implements IMediator<MediaPlayBase>{
 		addEventFilter(MouseEvent.MOUSE_DRAGGED, e->{
 			mediaPlayBase.GetMedipPlayer().seek(javafx.util.Duration.seconds(getValue()));
 		});
-//		addEventFilter(MouseEvent.MOUSE_CLICKED, e->{
-//			var nowSeconds=javafx.util.Duration.seconds(getValue());
-//			mediaPlayBase.GetMedipPlayer().seek(nowSeconds);
-//			
-//		});
 		setOnMouseClicked(e->{
 			mediaPlayBase.GetMedipPlayer().seek(javafx.util.Duration.seconds(getValue()));
 			setValue(mediaPlayBase.GetMedipPlayer().getCurrentTime().toSeconds());
 		});
-//		setOnMouseReleased(event->{
-//			mediaPlayBase.GetMedipPlayer().pause();
-//			mediaPlayBase.GetMedipPlayer().seek(javafx.util.Duration.seconds(getValue()));
-//			mediaPlayBase.GetMedipPlayer().play();
-//		});
-//		setOnMouseClicked(event->{
-//			mediaPlayBase.GetMedipPlayer().pause();
-//			mediaPlayBase.GetMedipPlayer().seek(javafx.util.Duration.seconds(getValue()));
-//			mediaPlayBase.GetMedipPlayer().play();
-//		});
+
 	}
 	@Override
 	public HBox GetRoot() {

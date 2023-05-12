@@ -42,7 +42,6 @@ public class MediaPlay extends MediaPlayBase{
 
 	private void EventInit() {
 		scene.setOnKeyPressed(e->{
-			System.out.println(e.getCode());
 			if(e.getCode()==KeyCode.K) {
                 if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
                     mediaPlayer.pause();
@@ -75,14 +74,12 @@ public class MediaPlay extends MediaPlayBase{
 		
 	}
     private void seekToPreviousFrame() {
-        double currentTime = currentTimeProperty.get().toMillis();
-        double newTime = Math.max(currentTime - ONEFPSDuration.toMillis(), 0);
+        double newTime = currentTimeProperty.get().toMillis() - ONEFPSDuration.toMillis();
         mediaPlayer.seek(Duration.millis(newTime));
     }
 
     private void seekToNextFrame() {
-        double currentTime = currentTimeProperty.get().toMillis();
-        double newTime = Math.min(currentTime + ONEFPSDuration.toMillis(), mediaPlayer.getTotalDuration().toMillis());
+        double newTime = currentTimeProperty.get().toMillis() + ONEFPSDuration.toMillis();
         mediaPlayer.seek(Duration.millis(newTime));
     }
 	@Override
@@ -93,15 +90,6 @@ public class MediaPlay extends MediaPlayBase{
 
 	@Override
 	public void CurrentTimeEvent(Slider slider, Label label) {
-//		   mediaPlayer.currentTimeProperty().addListener(new InvalidationListener() {
-//			
-//			@Override
-//			public void invalidated(Observable arg0) {
-//				// TODO 自動生成されたメソッド・スタブ
-//				slider.setValue(mediaPlayer.getCurrentTime().toSeconds());
-//			}
-//		});
-
 		mediaPlayer.currentTimeProperty().addListener((o,oldvaue,newValue)->{
 			 if(!slider.isValueChanging()) {
 				 slider.setValue(newValue.toSeconds());
