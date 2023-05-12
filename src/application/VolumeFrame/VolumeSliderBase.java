@@ -16,6 +16,7 @@ public class VolumeSliderBase extends Slider implements Observer<MediaPlayBase>{
 	private Builder builder;
 	private Label fileName=new Label();
 	private final Label volumeLabel=new Label("              音量調整");
+	private boolean first=true;
 	public  VolumeSliderBase(BorderPane pane,HBox hBox) {
 		super();
 		setMin(0);
@@ -33,6 +34,10 @@ public class VolumeSliderBase extends Slider implements Observer<MediaPlayBase>{
 			media.GetMedipPlayer().setVolume(getValue());
 		});
 		fileName.setText(media.getFileName());
-		builder.Build(pane);
+		if(first) {
+			builder.Build(pane);
+			first=false;
+		}
+		
 	}
 }

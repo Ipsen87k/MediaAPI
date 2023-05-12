@@ -6,15 +6,15 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
-public class FileReadWrite implements FileOpenable{
+public class FileOpen implements FileOpenable{
 	private FileChooser dialog=new FileChooser();
 	private Stage stage;
 	private String filePath;
 	
-	public FileReadWrite(Stage stage) {
+	public FileOpen(Stage stage) {
 		this.stage=stage;
 	    dialog.setTitle("ファイルを選択してください");
-	        // 初期ディレクトリを設定（オプション）
+	        // 初期ディレクトリを設定（オプション）及び拡張子設定
 	    dialog.setInitialDirectory(new File(System.getProperty("user.home")));
 	    dialog.getExtensionFilters().add(new ExtensionFilter("MP4 files (*.mp4)", "*.mp4"));
 	}
