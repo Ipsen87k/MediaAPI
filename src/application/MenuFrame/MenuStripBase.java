@@ -11,7 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 abstract class MenuStripBase extends MenuBar{
-	MediaPlayBase mediaPlayBase;
+	protected MediaPlayBase mediaPlayBase;
 	
     protected final Menu fileMenu = new Menu("ファイル");
     protected final Menu editMenu = new Menu("編集");

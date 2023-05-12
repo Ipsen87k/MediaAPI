@@ -23,6 +23,7 @@ public class MenuStrip extends MenuStripBase{
     		var videoPath=fileOpenable.OpenFileDialog();
     		if(videoPath==null)
     			return;
+    		mediaPlayBase.setFileName(fileOpenable.getFilePath());
     		mediaPlayBase.SetVideoPath(videoPath);
     	});
     }

@@ -21,6 +21,8 @@ public class MediaPlay extends MediaPlayBase{
 	private Observer volumeSliderBase;
 	private final Duration ONEFPSDuration=Duration.seconds(0.0333);
 	private ReadOnlyObjectProperty<Duration> currentTimeProperty;
+	private String filePath;
+	
 	public MediaPlay(BorderPane root, Stage stage, double heitht,IMediator<MediaPlayBase> iMediator ,Scene scene) {
 		super(root, stage, heitht);
 		this.iMediator=iMediator;
@@ -35,10 +37,11 @@ public class MediaPlay extends MediaPlayBase{
     	SendNotify();
 	}
 	private void initialize(String videoPath) {
+		
     	media=new Media(videoPath);
     	mediaPlayer=new MediaPlayer(media);
     	meidaView =new MediaView(mediaPlayer);
-    	meidaView.setFitWidth(700);
+    	meidaView.setFitWidth(1000);
     	root.setCenter(this.meidaView);
     	
 	}
@@ -110,6 +113,15 @@ public class MediaPlay extends MediaPlayBase{
 	public void setObserver(Observer observer) {
 		// TODO 自動生成されたメソッド・スタブ
 		
+	}
+
+	public String getFileName() {
+		return filePath;
+	}
+
+	@Override
+	public void setFileName(String filename) {
+		filePath=filename;
 	}
 
 
