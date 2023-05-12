@@ -1,4 +1,4 @@
-package VolumeFrame;
+package application.VolumeFrame;
 
 public interface Obserable {
 	void SendNotify();

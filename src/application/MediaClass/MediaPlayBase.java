@@ -1,6 +1,6 @@
 package application.MediaClass;
 
-import VolumeFrame.Obserable;
+import application.VolumeFrame.Obserable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;

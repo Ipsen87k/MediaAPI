@@ -1,7 +1,7 @@
 package application.MediaClass;
 
-import VolumeFrame.Observer;
-import VolumeFrame.VolumeSliderBase;
+import application.VolumeFrame.Observer;
+import application.VolumeFrame.VolumeSliderBase;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
