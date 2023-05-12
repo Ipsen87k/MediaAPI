@@ -1,5 +1,6 @@
 package application.MediaClass;
 
+import VolumeFrame.Observer;
 import VolumeFrame.VolumeSliderBase;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.Scene;
@@ -17,18 +18,21 @@ import javafx.util.Duration;
 public class MediaPlay extends MediaPlayBase{
 
 	private Scene scene;
+	private Observer volumeSliderBase;
 	private final Duration ONEFPSDuration=Duration.seconds(0.0333);
 	private ReadOnlyObjectProperty<Duration> currentTimeProperty;
 	public MediaPlay(BorderPane root, Stage stage, double heitht,IMediator<MediaPlayBase> iMediator ,Scene scene) {
 		super(root, stage, heitht);
 		this.iMediator=iMediator;
 		this.scene=scene;
+		volumeSliderBase=new VolumeSliderBase(root,iMediator.GetRoot());
 	}
 
 	@Override
 	public void SetVideoPath(String videoPath) {
 		initialize(videoPath);
     	EventInit();
+    	SendNotify();
 	}
 	private void initialize(String videoPath) {
     	media=new Media(videoPath);
@@ -69,7 +73,6 @@ public class MediaPlay extends MediaPlayBase{
     	    // フォーム（Stage）のサイズを動画ファイルのサイズに設定
     	    stage.setWidth(videoWidth);
     	    stage.setHeight(videoHeight+height);
-    	    root.setBottom(iMediator.GetRoot());
     	});
 		
 	}
@@ -98,7 +101,13 @@ public class MediaPlay extends MediaPlayBase{
 	}
 
 	@Override
-	public  void OnNext(VolumeSliderBase obserable) {
+	public void SendNotify() {
+		// TODO 自動生成されたメソッド・スタブ
+		volumeSliderBase.OnNext(this);
+	}
+
+	@Override
+	public void setObserver(Observer observer) {
 		// TODO 自動生成されたメソッド・スタブ
 		
 	}
