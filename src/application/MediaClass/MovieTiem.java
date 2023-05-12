@@ -8,16 +8,13 @@ import javafx.scene.layout.HBox;
 public class MovieTiem extends Slider implements IMediator<MediaPlayBase>{
 	
 	private MediaPlayBase mediaPlayBase;
-	private Label timeLabel=new Label();
+	private final Label timeLabel=new Label("再生時間");
 	private HBox root=new HBox(5.0);
 	public MovieTiem() {
 		super();
 		setMin(0);
 		setValue(0);
-		root.getChildren().add(this);
-		root.getChildren().add(timeLabel);
-		
-
+		root.getChildren().addAll(timeLabel,this);
 	}
 	public void SendData(MediaPlayBase media) {
 		setMin(media.GetMedipPlayer().getStartTime().toSeconds());

@@ -15,13 +15,13 @@ public class VolumeSliderBase extends Slider implements Observer<MediaPlayBase>{
 	private BorderPane pane;
 	private Builder builder;
 	private Label fileName=new Label();
+	private final Label volumeLabel=new Label("              音量調整");
 	public  VolumeSliderBase(BorderPane pane,HBox hBox) {
 		super();
 		setMin(0);
 		setMax(1);
 		this.pane=pane;
-		root.getChildren().add(this);
-		root.getChildren().add(fileName);
+		root.getChildren().addAll(fileName,volumeLabel,this);
 		builder=new LayoutBuidlder(root,hBox);
 	}
 
