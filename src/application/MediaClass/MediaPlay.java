@@ -19,7 +19,7 @@ public class MediaPlay extends MediaPlayBase{
 
 	private Scene scene;
 	private Observer volumeSliderBase;
-	private final Duration ONEFPSDuration=Duration.seconds(0.0333);
+	private final Duration ONEFPSDuration=Duration.seconds(0.033333333);
 	private ReadOnlyObjectProperty<Duration> currentTimeProperty;
 	private String filePath;
 	
@@ -50,10 +50,10 @@ public class MediaPlay extends MediaPlayBase{
 	private void EventInit() {
 		scene.setOnKeyPressed(e->{
 			if(e.getCode()==KeyCode.K) {
-                if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                if (mediaPlayer.getStatus() == Status.PLAYING) {
                     mediaPlayer.pause();
                 }
-                else if(mediaPlayer.getStatus()==Status.PAUSED)
+                else if(mediaPlayer.getStatus()==Status.PAUSED||mediaPlayer.getStatus()==Status.READY)
                 	mediaPlayer.play();
 			}
 			if(e.getCode()==KeyCode.DOWN) {
@@ -80,9 +80,9 @@ public class MediaPlay extends MediaPlayBase{
 		
 	}
     private void seekToPreviousFrame() {
-    	System.out.println(currentTimeProperty.get().toMillis());
+    	//System.out.println(currentTimeProperty.get().toMillis());
         double newTime = currentTimeProperty.get().toMillis() - ONEFPSDuration.toMillis();
-        System.out.println(newTime);
+        //System.out.println(newTime);
         mediaPlayer.seek(Duration.millis(newTime));
     }
 
@@ -95,7 +95,6 @@ public class MediaPlay extends MediaPlayBase{
 		// TODO 自動生成されたメソッド・スタブ
 		return mediaPlayer;
 	}
-
 	@Override
 	public void CurrentTimeEvent(Slider slider, Label label) {
 		mediaPlayer.currentTimeProperty().addListener((o,oldvaue,newValue)->{

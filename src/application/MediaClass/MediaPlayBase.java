@@ -25,7 +25,7 @@ public abstract class MediaPlayBase implements Obserable{
     }
     public abstract void SetVideoPath(String videoPath );
     public abstract MediaPlayer GetMedipPlayer();
-    public abstract void CurrentTimeEvent(Slider slider,Label label);
+    protected abstract void CurrentTimeEvent(Slider slider, Label label);
 	public abstract String getFileName();
 	public abstract void setFileName(String filename);
 }
