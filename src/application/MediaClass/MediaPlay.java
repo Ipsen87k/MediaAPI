@@ -18,17 +18,16 @@ public class MediaPlay extends MediaPlayBase{
 	private Media media;
 	private MediaPlayer mediaPlayer;
 	private MediaView meidaView;
-    private IMediator<MediaPlayAddEventLisner> iMediator;
     private BorderPane root;
     private Stage stage;
 	
-	public MediaPlay(BorderPane root, Stage stage, IMediator<MediaPlayAddEventLisner> iMediator ,Scene scene) {
+	public MediaPlay(BorderPane root, Stage stage,Scene scene) {
 		this.root=root;
 		this.stage=stage;
-		this.iMediator=iMediator;
 		this.scene=scene;
-		this.mediaPlayAddEventLisner =new MediaPlayAddEventLisner(iMediator);
-		volumeSliderBase=new VolumeSliderBase(root,iMediator.GetRoot());
+		this.mediaPlayAddEventLisner =new MediaPlayAddEventLisner();
+		volumeSliderBase=new VolumeSliderBase(root, mediaPlayAddEventLisner.getHbox());
+		//volumeSliderBase=new VolumeSliderBase(root,iMediator.GetRoot());
 	}
 	@Override
 	public void SetVideoPath(String videoPath) {

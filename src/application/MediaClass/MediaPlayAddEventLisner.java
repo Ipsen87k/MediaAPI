@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.Stage;
@@ -14,12 +15,13 @@ public class MediaPlayAddEventLisner {
 	private final Duration ONEFPSDuration=Duration.seconds(0.033333333);
 	private MediaPlayer mediaPlayer;
 	private ReadOnlyObjectProperty<Duration> currentTimeProperty;
-	private IMediator<MediaPlayAddEventLisner> iMediator;
+	private IMediator<MediaPlayAddEventLisner> iMediator=new TimeSlider();
 	
 	MediaPlayAddEventLisner(IMediator<MediaPlayAddEventLisner> iMediator){
 		this.iMediator=iMediator;
 	}
-	
+	MediaPlayAddEventLisner() {
+	}
 	void addSetKeyEvent(Scene scene) {
 		scene.setOnKeyPressed(e->{
 			if(e.getCode()==KeyCode.K) {
@@ -64,6 +66,9 @@ public class MediaPlayAddEventLisner {
     }
     MediaPlayer getMediaPlayer() {
     	return this.mediaPlayer;
+    }
+    HBox getHbox() {
+    	return iMediator.GetRoot();
     }
     private void seekToPreviousFrame() {
     	//System.out.println(currentTimeProperty.get().toMillis());

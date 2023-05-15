@@ -1,6 +1,5 @@
 package application;
 	
-import application.MediaClass.MovieTiem;
 import application.MenuFrame.MenuStrip;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -18,8 +17,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			
-			var mediator=new MovieTiem();
-			new MenuStrip(root,primaryStage,mediator,scene);
+			new MenuStrip(root,primaryStage,scene);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
