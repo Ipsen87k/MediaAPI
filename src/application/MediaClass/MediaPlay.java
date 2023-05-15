@@ -25,7 +25,7 @@ public class MediaPlay extends MediaPlayBase{
 		this.root=root;
 		this.stage=stage;
 		this.scene=scene;
-		this.mediaPlayAddEventLisner =new MediaPlayAddEventLisner();
+		this.mediaPlayAddEventLisner =MediaPlayAddEventLisner.CreateInstance();
 		volumeSliderBase=new VolumeSliderBase(root, mediaPlayAddEventLisner.getHbox());
 		//volumeSliderBase=new VolumeSliderBase(root,iMediator.GetRoot());
 	}

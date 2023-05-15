@@ -17,10 +17,10 @@ public class MediaPlayAddEventLisner {
 	private ReadOnlyObjectProperty<Duration> currentTimeProperty;
 	private IMediator<MediaPlayAddEventLisner> iMediator=new TimeSlider();
 	
-	MediaPlayAddEventLisner(IMediator<MediaPlayAddEventLisner> iMediator){
-		this.iMediator=iMediator;
+	private MediaPlayAddEventLisner() {
 	}
-	MediaPlayAddEventLisner() {
+	static MediaPlayAddEventLisner CreateInstance() {
+		return new MediaPlayAddEventLisner();
 	}
 	void addSetKeyEvent(Scene scene) {
 		scene.setOnKeyPressed(e->{
