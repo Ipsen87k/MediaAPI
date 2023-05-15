@@ -2,6 +2,7 @@ package application.MenuFrame;
 
 import application.MediaClass.IMediator;
 import application.MediaClass.MediaPlay;
+import application.MediaClass.MediaPlayAddEventLisner;
 import application.MediaClass.MediaPlayBase;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -24,11 +25,11 @@ abstract class MenuStripBase extends MenuBar{
     protected final MenuItem PAUSEITEM = new MenuItem("一時停止");
     protected final MenuItem STOPITEM = new MenuItem("停止");
     
-    public MenuStripBase(BorderPane root,Stage stage,IMediator<MediaPlayBase> iMediator,Scene scene) {
+    public MenuStripBase(BorderPane root,Stage stage,IMediator<MediaPlayAddEventLisner> iMediator,Scene scene) {
         fileMenu.getItems().addAll(newItem, openItem, saveItem);
         editMenu.getItems().addAll(playItem, PAUSEITEM, STOPITEM);     
         getMenus().addAll(fileMenu,editMenu);
-        mediaPlayBase=new MediaPlay(root,stage,this.getHeight(),iMediator,scene);
+        mediaPlayBase=new MediaPlay(root,stage,iMediator,scene);
         root.setTop(this);
     }
 

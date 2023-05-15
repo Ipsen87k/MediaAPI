@@ -3,7 +3,7 @@ package application.MenuFrame;
 import application.FileDialog.FileOpen;
 import application.FileDialog.FileOpenable;
 import application.MediaClass.IMediator;
-import application.MediaClass.MediaPlayBase;
+import application.MediaClass.MediaPlayAddEventLisner;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.MediaPlayer.Status;
@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class MenuStrip extends MenuStripBase{
 	private FileOpenable fileOpenable;
 	
-	public MenuStrip(BorderPane root, Stage stage, IMediator<MediaPlayBase> iMediator,Scene scene) {
+	public MenuStrip(BorderPane root, Stage stage, IMediator<MediaPlayAddEventLisner> iMediator,Scene scene) {
 		super(root, stage, iMediator,scene);
 		fileOpenable=new FileOpen(stage);
 		FileMenuItemAddEvent(); 
