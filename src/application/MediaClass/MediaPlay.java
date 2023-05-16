@@ -29,16 +29,13 @@ public class MediaPlay extends MediaPlayBase{
 		this.stage=stage;
 		this.scene=scene;
 		this.mediaPlayAddEventLisner =MediaPlayAddEventLisner.CreateInstance();
-		//observers=new VolumeSliderBase(root, mediaPlayAddEventLisner.getHbox());
 		Observer volumeSliderBase=new VolumeSliderBase(this);
 	}
 	@Override
 	public void SetVideoPath(String videoPath) {
 		initialize(videoPath);
-    	//EventInit();
 		mediaPlayAddEventLisner.addSetKeyEvent(scene);
 		mediaPlayAddEventLisner.addSetMediaPlayerReadyOnEvent(stage);
-		//this.iMediator.SendData(this);
     	SendNotify();
 	}
 	private void initialize(String videoPath) {
@@ -52,14 +49,12 @@ public class MediaPlay extends MediaPlayBase{
 	}
 
 	public MediaPlayer GetMedipPlayer() {
-		// TODO 自動生成されたメソッド・スタブ
 		return mediaPlayer;
 	}
 
 
 	@Override
 	public void SendNotify() {
-		// TODO 自動生成されたメソッド・スタブ
 		for(var observer:observers) {
 			observer.OnNext(this.root,this.mediaPlayAddEventLisner.getHbox());
 		}

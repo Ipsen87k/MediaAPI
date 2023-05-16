@@ -24,6 +24,7 @@ public class TimeSlider extends Slider implements IMediator<MediaPlayAddEventLis
 		this.mediaPlayAddEventLisner=mediaPlayAddEventLisner;
 		setMin(this.mediaPlay.getStartTime().toSeconds());
 		setMax(this.mediaPlay.getStopTime().toSeconds());
+		setSnapToTicks(true);
 		SliderChanged();
 		mediaPlayAddEventLisner.CurrentTimeEvent(this, timeLabel);
 	}
@@ -37,8 +38,9 @@ public class TimeSlider extends Slider implements IMediator<MediaPlayAddEventLis
 			this.mediaPlay.seek(javafx.util.Duration.seconds(getValue()));
 		});
 		setOnMouseClicked(e->{
+			this.mediaPlay.pause();
 			this.mediaPlay.seek(javafx.util.Duration.seconds(getValue()));
-			setValue(this.mediaPlay.getCurrentTime().toSeconds());
+			this.mediaPlay.play();
 		});
 
 	}
