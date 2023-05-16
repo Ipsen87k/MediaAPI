@@ -1,5 +1,8 @@
 package application.MediaClass;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import application.VolumeFrame.Observer;
 import application.VolumeFrame.VolumeSliderBase;
 import javafx.scene.Scene;
@@ -12,7 +15,7 @@ import javafx.stage.Stage;
 public class MediaPlay extends MediaPlayBase{
 
 	private Scene scene;
-	private Observer volumeSliderBase;
+	private List<Observer> observers=new ArrayList<>();
 	private String filePath;
 	private MediaPlayAddEventLisner mediaPlayAddEventLisner;
 	private Media media;
@@ -26,8 +29,8 @@ public class MediaPlay extends MediaPlayBase{
 		this.stage=stage;
 		this.scene=scene;
 		this.mediaPlayAddEventLisner =MediaPlayAddEventLisner.CreateInstance();
-		volumeSliderBase=new VolumeSliderBase(root, mediaPlayAddEventLisner.getHbox());
-		//volumeSliderBase=new VolumeSliderBase(root,iMediator.GetRoot());
+		//observers=new VolumeSliderBase(root, mediaPlayAddEventLisner.getHbox());
+		Observer volumeSliderBase=new VolumeSliderBase(this);
 	}
 	@Override
 	public void SetVideoPath(String videoPath) {
@@ -57,7 +60,9 @@ public class MediaPlay extends MediaPlayBase{
 	@Override
 	public void SendNotify() {
 		// TODO 自動生成されたメソッド・スタブ
-		volumeSliderBase.OnNext(this);
+		for(var observer:observers) {
+			observer.OnNext(this.root,this.mediaPlayAddEventLisner.getHbox());
+		}
 	}
 
 
@@ -68,6 +73,10 @@ public class MediaPlay extends MediaPlayBase{
 	@Override
 	public void setFileName(String filename) {
 		filePath=filename;
+	}
+	@Override
+	public void registerObserver(Observer o) {
+		this.observers.add(o);
 	}
 
 

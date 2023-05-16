@@ -9,35 +9,39 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-public class VolumeSliderBase extends Slider implements Observer<MediaPlayBase>{
+public class VolumeSliderBase extends Slider implements Observer<BorderPane,HBox>{
 	
 	private HBox root=new HBox(5.0);
+	private MediaPlayBase mediaPlayBase;
 	private BorderPane pane;
 	private Builder builder;
 	private Label fileName=new Label();
 	private final Label volumeLabel=new Label("              音量調整");
 	private boolean first=true;
-	public  VolumeSliderBase(BorderPane pane,HBox hBox) {
+	public  VolumeSliderBase(MediaPlayBase mediaPlayBase) {
 		super();
 		setMin(0);
 		setMax(1);
-		this.pane=pane;
+		this.mediaPlayBase=mediaPlayBase;
+		mediaPlayBase.registerObserver(this);
 		root.getChildren().addAll(fileName,volumeLabel,this);
-		builder=new LayoutBuidlder(root,hBox);
+		
 	}
 
 	//音量イベント登録
 	@Override
-	public void OnNext(MediaPlayBase media) {
-		setValue(media.GetMedipPlayer().getVolume());
+	public void OnNext(BorderPane pane,HBox hBox) {
+		setValue(mediaPlayBase.GetMedipPlayer().getVolume());
 		valueProperty().addListener(change->{
-			media.GetMedipPlayer().setVolume(getValue());
+			mediaPlayBase.GetMedipPlayer().setVolume(getValue());
 		});
-		fileName.setText(media.getFileName());
+		fileName.setText(mediaPlayBase.getFileName());
 		if(first) {
+			builder=new LayoutBuidlder(root,hBox);
 			builder.Build(pane);
 			first=false;
 		}
 		
 	}
+
 }

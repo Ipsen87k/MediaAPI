@@ -11,11 +11,11 @@ import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class MediaPlayAddEventLisner {
+public class MediaPlayAddEventLisner extends MediaPlayAddEventLisnerBase{
 	private final Duration ONEFPSDuration=Duration.seconds(0.033333333);
 	private MediaPlayer mediaPlayer;
 	private ReadOnlyObjectProperty<Duration> currentTimeProperty;
-	private IMediator<MediaPlayAddEventLisner> iMediator=new TimeSlider();
+	
 	
 	private MediaPlayAddEventLisner() {
 	}
@@ -53,7 +53,7 @@ public class MediaPlayAddEventLisner {
     	    stage.setHeight(videoHeight);
     	});
 	}
-	void CurrentTimeEvent(Slider slider, Label label) {
+	protected void CurrentTimeEvent(Slider slider, Label label) {
 		mediaPlayer.currentTimeProperty().addListener((o,oldvaue,newValue)->{
 			 if(!slider.isValueChanging()) {
 				 slider.setValue(newValue.toSeconds());

@@ -6,12 +6,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaPlayer;
 
-public class TimeSlider extends Slider implements IMediator<MediaPlayAddEventLisner>{
+public class TimeSlider extends Slider implements IMediator<MediaPlayAddEventLisnerBase>{
 	
 	private MediaPlayer mediaPlay;
 	private final Label timeLabel=new Label("再生時間");
 	private HBox root=new HBox(5.0);
-	private MediaPlayAddEventLisner mediaPlayAddEventLisner;
+	private MediaPlayAddEventLisnerBase mediaPlayAddEventLisner;
 	public TimeSlider() {
 		super();
 		setMin(0);
@@ -19,7 +19,7 @@ public class TimeSlider extends Slider implements IMediator<MediaPlayAddEventLis
 		root.getChildren().addAll(timeLabel,this);
 	}
 
-	public void SendData(MediaPlayAddEventLisner mediaPlayAddEventLisner) {
+	public void SendData(MediaPlayAddEventLisnerBase mediaPlayAddEventLisner) {
 		this.mediaPlay=mediaPlayAddEventLisner.getMediaPlayer();
 		this.mediaPlayAddEventLisner=mediaPlayAddEventLisner;
 		setMin(this.mediaPlay.getStartTime().toSeconds());
