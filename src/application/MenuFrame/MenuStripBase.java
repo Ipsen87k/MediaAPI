@@ -16,15 +16,13 @@ abstract class MenuStripBase extends MenuBar{
     protected final Menu editMenu = new Menu("編集");
 
     // メニューアイテムを作成
-    protected final MenuItem newItem = new MenuItem("新規作成");
     protected final MenuItem openItem = new MenuItem("開く");
-    protected final MenuItem saveItem = new MenuItem("保存");
     protected final MenuItem playItem = new MenuItem("再生");
     protected final MenuItem PAUSEITEM = new MenuItem("一時停止");
     protected final MenuItem STOPITEM = new MenuItem("停止");
     
     public MenuStripBase(BorderPane root,Stage stage,Scene scene) {
-        fileMenu.getItems().addAll(newItem, openItem, saveItem);
+        fileMenu.getItems().addAll(openItem);
         editMenu.getItems().addAll(playItem, PAUSEITEM, STOPITEM);     
         getMenus().addAll(fileMenu,editMenu);
         mediaPlayBase=new MediaPlay(root,stage,scene);
