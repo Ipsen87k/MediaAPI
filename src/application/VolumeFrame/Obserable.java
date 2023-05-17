@@ -1,6 +1,6 @@
 package application.VolumeFrame;
 
 public interface Obserable {
-	void SendNotify();
+	void sendNotify();
 	void registerObserver(Observer o);
 }

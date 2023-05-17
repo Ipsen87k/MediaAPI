@@ -18,7 +18,7 @@ public class FileOpen implements FileOpenable{
 	    dialog.setInitialDirectory(new File(System.getProperty("user.home")));
 	    dialog.getExtensionFilters().add(new ExtensionFilter("MP4 files (*.mp4)", "*.mp4"));
 	}
-	public String OpenFileDialog() {
+	public String openFileDialog() {
         var selectedFile = dialog.showOpenDialog(stage);
         
         // 選択されたファイルがある場合は処理を行う

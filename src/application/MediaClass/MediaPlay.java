@@ -32,14 +32,13 @@ public class MediaPlay extends MediaPlayBase{
 		Observer volumeSliderBase=new VolumeSliderBase(this);
 	}
 	@Override
-	public void SetVideoPath(String videoPath) {
+	public void setVideoReady(String videoPath) {
 		initialize(videoPath);
 		mediaPlayAddEventLisner.addSetKeyEvent(scene);
 		mediaPlayAddEventLisner.addSetMediaPlayerReadyOnEvent(stage);
-    	SendNotify();
+    	sendNotify();
 	}
-	private void initialize(String videoPath) {
-		
+	private void initialize(String videoPath) {		
     	media=new Media(videoPath);
     	mediaPlayer=new MediaPlayer(media);
     	meidaView =new MediaView(mediaPlayer);
@@ -48,15 +47,15 @@ public class MediaPlay extends MediaPlayBase{
     	mediaPlayAddEventLisner.setMediaInfo(mediaPlayer);
 	}
 
-	public MediaPlayer GetMedipPlayer() {
+	public MediaPlayer getMedipPlayer() {
 		return mediaPlayer;
 	}
 
 
 	@Override
-	public void SendNotify() {
+	public void sendNotify() {
 		for(var observer:observers) {
-			observer.OnNext(this.root,this.mediaPlayAddEventLisner.getHbox());
+			observer.update(this.root,this.mediaPlayAddEventLisner.getHbox());
 		}
 	}
 

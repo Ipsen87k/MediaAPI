@@ -5,8 +5,8 @@ import javafx.scene.media.MediaPlayer;
 
 public abstract class MediaPlayBase implements Obserable{
     
-    public abstract void SetVideoPath(String videoPath );
-    public abstract MediaPlayer GetMedipPlayer();
+    public abstract void setVideoReady(String videoPath );
+    public abstract MediaPlayer getMedipPlayer();
 	public abstract String getFileName();
 	public abstract void setFileName(String filename);
 }

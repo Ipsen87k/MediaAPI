@@ -48,12 +48,12 @@ public class MediaPlayAddEventLisner extends MediaPlayAddEventLisnerBase{
     	    int videoWidth = mediaPlayer.getMedia().getWidth();
     	    int videoHeight = mediaPlayer.getMedia().getHeight();
     	    // フォーム（Stage）のサイズを動画ファイルのサイズに設定
-    	    iMediator.SendData(this);
+    	    iMediator.ifColleagueChanged(this);
     	    stage.setWidth(videoWidth);
     	    stage.setHeight(videoHeight);
     	});
 	}
-	protected void CurrentTimeEvent(Slider slider, Label label) {
+	protected void currentTimeEvent(Slider slider, Label label) {
 		mediaPlayer.currentTimeProperty().addListener((o,oldvaue,newValue)->{
 			slider.setValue(newValue.toSeconds());
 		});
@@ -66,7 +66,7 @@ public class MediaPlayAddEventLisner extends MediaPlayAddEventLisnerBase{
     	return this.mediaPlayer;
     }
     HBox getHbox() {
-    	return iMediator.GetRoot();
+    	return iMediator.getRoot();
     }
     private void seekToPreviousFrame() {
     	//System.out.println(currentTimeProperty.get().toMillis());

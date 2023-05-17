@@ -30,15 +30,15 @@ public class VolumeSliderBase extends Slider implements Observer<BorderPane,HBox
 
 	//音量イベント登録
 	@Override
-	public void OnNext(BorderPane pane,HBox hBox) {
-		setValue(mediaPlayBase.GetMedipPlayer().getVolume());
+	public void update(BorderPane pane,HBox hBox) {
+		setValue(mediaPlayBase.getMedipPlayer().getVolume());
 		valueProperty().addListener(change->{
-			mediaPlayBase.GetMedipPlayer().setVolume(getValue());
+			mediaPlayBase.getMedipPlayer().setVolume(getValue());
 		});
 		fileName.setText(mediaPlayBase.getFileName());
 		if(first) {
 			builder=new LayoutBuidlder(root,hBox);
-			builder.Build(pane);
+			builder.build(pane);
 			first=false;
 		}
 		

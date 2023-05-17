@@ -18,29 +18,29 @@ public class MenuStrip extends MenuStripBase{
 	}
     private void FileMenuItemAddEvent() {
     	openItem.setOnAction(event->{
-    		var videoPath=fileOpenable.OpenFileDialog();
+    		var videoPath=fileOpenable.openFileDialog();
     		if(videoPath==null)
     			return;
     		mediaPlayBase.setFileName(fileOpenable.getFilePath());
-    		mediaPlayBase.SetVideoPath(videoPath);
+    		mediaPlayBase.setVideoReady(videoPath);
     	});
     }
     private void EditMenuItemEventAddInit() {
 
     	playItem.setOnAction(event->{
-        	if(mediaPlayBase.GetMedipPlayer()==null)
+        	if(mediaPlayBase.getMedipPlayer()==null)
         		return;
-    		mediaPlayBase.GetMedipPlayer().play();
+    		mediaPlayBase.getMedipPlayer().play();
     	});
     	PAUSEITEM.setOnAction(e->{
-    		if(mediaPlayBase.GetMedipPlayer().getStatus()==Status.PLAYING) {
-    			mediaPlayBase.GetMedipPlayer().pause();
+    		if(mediaPlayBase.getMedipPlayer().getStatus()==Status.PLAYING) {
+    			mediaPlayBase.getMedipPlayer().pause();
     		}
     		
     	});
     	STOPITEM.setOnAction(e->{
-    		if(mediaPlayBase.GetMedipPlayer().getStatus()==Status.PLAYING||mediaPlayBase.GetMedipPlayer().getStatus()==Status.PAUSED) {
-    			mediaPlayBase.GetMedipPlayer().stop();
+    		if(mediaPlayBase.getMedipPlayer().getStatus()==Status.PLAYING||mediaPlayBase.getMedipPlayer().getStatus()==Status.PAUSED) {
+    			mediaPlayBase.getMedipPlayer().stop();
     		}
     		
     	});

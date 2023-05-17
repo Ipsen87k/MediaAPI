@@ -6,7 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaPlayer;
 
-public class TimeSlider extends Slider implements IMediator<MediaPlayAddEventLisnerBase>{
+public class TimeSlider extends Slider implements Mediator<MediaPlayAddEventLisnerBase>{
 	
 	private MediaPlayer mediaPlay;
 	private final Label timeLabel=new Label("再生時間");
@@ -19,17 +19,17 @@ public class TimeSlider extends Slider implements IMediator<MediaPlayAddEventLis
 		root.getChildren().addAll(timeLabel,this);
 	}
 
-	public void SendData(MediaPlayAddEventLisnerBase mediaPlayAddEventLisner) {
+	public void ifColleagueChanged(MediaPlayAddEventLisnerBase mediaPlayAddEventLisner) {
 		this.mediaPlay=mediaPlayAddEventLisner.getMediaPlayer();
 		this.mediaPlayAddEventLisner=mediaPlayAddEventLisner;
 		setMin(this.mediaPlay.getStartTime().toSeconds());
 		setMax(this.mediaPlay.getStopTime().toSeconds());
 		setSnapToTicks(true);
-		SliderChanged();
-		mediaPlayAddEventLisner.CurrentTimeEvent(this, timeLabel);
+		sliderChanged();
+		mediaPlayAddEventLisner.currentTimeEvent(this, timeLabel);
 	}
 
-	private void SliderChanged() {
+	private void sliderChanged() {
         // スライダーの値が変化したときに再生位置を変更する
 		addEventFilter(MouseEvent.MOUSE_RELEASED, e->{
 			this.mediaPlay.seek(javafx.util.Duration.seconds(getValue()));
@@ -45,7 +45,7 @@ public class TimeSlider extends Slider implements IMediator<MediaPlayAddEventLis
 
 	}
 	@Override
-	public HBox GetRoot() {
+	public HBox getRoot() {
 		// TODO 自動生成されたメソッド・スタブ
 		return root;
 	}
